@@ -5,14 +5,30 @@ use std::fs::{self, File};
 use std::io::{self, Read, Write};
 
 fn main() {
-    codegen().expect("codegen failed");
+    codegen(svd_file_name()).expect("codegen failed");
 
     println!("cargo:rerun-if-changed=STM32F7x.svd");
 }
 
-fn codegen() -> io::Result<()> {
+fn svd_file_name() -> &'static str {
+    use std::env;
+
+    let err_no_board = "Please choose a board feature!";
+    let err_duplicate_board = "Error: Multiple board features chosen!";
+
+    let mut file_name = None;
+
+    if env::var("CARGO_FEATURE_STM32F7").is_ok() {
+        assert!(file_name.is_none(), err_duplicate_board);
+        file_name = Some("STM32F7x.svd");
+    }
+
+    file_name.expect(err_no_board)
+}
+
+fn codegen(svd_file_name: &str) -> io::Result<()> {
     let xml = &mut String::new();
-    File::open("STM32F7x.svd").unwrap().read_to_string(xml).unwrap();
+    File::open(svd_file_name).unwrap().read_to_string(xml).unwrap();
     let device = svd_parser::parse(xml);
 
     let _ = fs::remove_dir_all("src");
