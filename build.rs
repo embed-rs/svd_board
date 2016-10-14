@@ -20,6 +20,10 @@ fn codegen() -> io::Result<()> {
 
     let mut lib_rs = File::create("src/lib.rs").unwrap();
 
+    // no_std
+    try!(writeln!(lib_rs, "#![no_std]"));
+    try!(writeln!(lib_rs, ""));
+
     // extern crates
     try!(writeln!(lib_rs, "extern crate volatile_register;"));
     try!(writeln!(lib_rs, "#[macro_use] extern crate once;"));
