@@ -11,4 +11,5 @@ volatile-register = "0.1.1"
 svd-parser = "0.1.1"
 
 [build-dependencies.svd2rust]
-git = "https://github.com/japaric/svd2rust.git"
+git = "https://github.com/phil-opp/svd2rust.git"
+branch = "wip"
