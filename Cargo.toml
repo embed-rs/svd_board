@@ -4,12 +4,13 @@ build = "build.rs"
 name = "stm32f7_svd"
 version = "0.1.0"
 
-[dependencies]
-volatile-register = "0.1.1"
-
 [build-dependencies]
 svd-parser = "0.1.1"
 
 [build-dependencies.svd2rust]
-git = "https://github.com/phil-opp/svd2rust.git"
 branch = "wip"
+git = "https://github.com/phil-opp/svd2rust.git"
+
+[dependencies]
+once = "0.3.2"
+volatile-register = "0.1.1"
