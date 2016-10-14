@@ -1,4 +1,14 @@
 [package]
 authors = ["Philipp Oppermann <dev@phil-opp.com>"]
+build = "build.rs"
 name = "stm32f7"
 version = "0.1.0"
+
+[dependencies]
+volatile-register = "0.1.1"
+
+[build-dependencies]
+svd-parser = "0.1.1"
+
+[build-dependencies.svd2rust]
+git = "https://github.com/japaric/svd2rust.git"
