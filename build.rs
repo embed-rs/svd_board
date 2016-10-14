@@ -15,7 +15,7 @@ fn codegen() -> io::Result<()> {
     File::open("STM32F7x.svd").unwrap().read_to_string(xml).unwrap();
     let device = svd_parser::parse(xml);
 
-    fs::remove_dir_all("src").unwrap();
+    let _ = fs::remove_dir_all("src");
     fs::create_dir("src").unwrap();
 
     let mut lib_rs = File::create("src/lib.rs").unwrap();
