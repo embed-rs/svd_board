@@ -1,8 +1,10 @@
 extern crate svd_parser;
 extern crate svd2rust;
+extern crate inflections;
 
 use std::fs::{self, File};
 use std::io::{self, Read, Write};
+use inflections::Inflect;
 
 fn main() {
     codegen(svd_file_name()).expect("codegen failed");
@@ -72,9 +74,10 @@ fn codegen(svd_file_name: &str) -> io::Result<()> {
     try!(writeln!(lib_rs, "pub struct Hardware {{"));
     for &(ref module_name, _) in &modules {
         try!(writeln!(lib_rs,
-                      "    pub {}: &'static mut {}::RegisterBlock,",
+                      "    pub {}: &'static mut {}::{},",
                       module_name,
-                      module_name));
+                      module_name,
+                      module_name.to_pascal_case()));
     }
     try!(writeln!(lib_rs, "}}"));
 

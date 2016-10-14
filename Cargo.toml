@@ -6,6 +6,7 @@ version = "0.1.0"
 
 [build-dependencies]
 svd-parser = "0.1.1"
+inflections = "1.0.0"
 
 [build-dependencies.svd2rust]
 branch = "wip"
