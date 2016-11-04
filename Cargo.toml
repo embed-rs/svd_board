@@ -14,7 +14,7 @@ git = "https://github.com/phil-opp/svd2rust.git"
 
 [dependencies]
 once = "0.3.2"
-volatile-register = "0.1.1"
+volatile = "0.2.0"
 
 [lib]
 

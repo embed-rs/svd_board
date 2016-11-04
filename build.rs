@@ -43,7 +43,7 @@ fn codegen(svd_file_name: &str) -> io::Result<()> {
     try!(writeln!(lib_rs, ""));
 
     // extern crates
-    try!(writeln!(lib_rs, "extern crate volatile_register;"));
+    try!(writeln!(lib_rs, "extern crate volatile;"));
     try!(writeln!(lib_rs, "#[macro_use] extern crate once;"));
     try!(writeln!(lib_rs, ""));
 
