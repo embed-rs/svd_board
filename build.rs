@@ -9,7 +9,7 @@ use inflections::Inflect;
 fn main() {
     codegen(svd_file_name()).expect("codegen failed");
 
-    println!("cargo:rerun-if-changed=STM32F7x.svd");
+    println!("cargo:rerun-if-changed=svd/STM32F7x.svd");
 }
 
 fn svd_file_name() -> &'static str {
@@ -22,7 +22,7 @@ fn svd_file_name() -> &'static str {
 
     if env::var("CARGO_FEATURE_STM32F7").is_ok() {
         assert!(file_name.is_none(), err_duplicate_board);
-        file_name = Some("STM32F7x.svd");
+        file_name = Some("svd/STM32F7x.svd");
     }
 
     file_name.expect(err_no_board)
