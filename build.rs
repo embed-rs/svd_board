@@ -25,6 +25,11 @@ fn svd_file_name() -> &'static str {
         file_name = Some("svd/STM32F7x.svd");
     }
 
+    if env::var("CARGO_FEATURE_STM32F46").is_ok() {
+        assert!(file_name.is_none(), err_duplicate_board);
+        file_name = Some("svd/STM32F46_79x.svd");
+    }
+
     file_name.expect(err_no_board)
 }
 

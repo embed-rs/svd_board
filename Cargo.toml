@@ -16,4 +16,5 @@ volatile = "0.2.0"
 [lib]
 
 [features]
+stm32f46 = []
 stm32f7 = []
