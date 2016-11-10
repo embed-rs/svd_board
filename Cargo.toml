@@ -7,10 +7,7 @@ version = "0.1.0"
 [build-dependencies]
 svd-parser = "0.1.1"
 inflections = "1.0.0"
-
-[build-dependencies.svd2rust]
-branch = "wip"
-git = "https://github.com/phil-opp/svd2rust.git"
+svd_codegen = "0.1.1"
 
 [dependencies]
 once = "0.3.2"

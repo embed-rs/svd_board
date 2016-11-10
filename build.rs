@@ -1,5 +1,5 @@
 extern crate svd_parser;
-extern crate svd2rust;
+extern crate svd_codegen;
 extern crate inflections;
 
 use std::fs::{self, File};
@@ -50,7 +50,7 @@ fn codegen(svd_file_name: &str) -> io::Result<()> {
     let mut modules = Vec::new();
 
     for peripheral in &device.peripherals {
-        let code = svd2rust::gen_peripheral(peripheral, &device.defaults)
+        let code = svd_codegen::gen_peripheral(peripheral, &device.defaults)
             .iter()
             .map(|i| i.to_string())
             .collect::<Vec<_>>()
