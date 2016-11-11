@@ -43,6 +43,10 @@ fn codegen(svd_file_name: &str) -> io::Result<()> {
 
     let mut lib_rs = File::create("src/lib.rs").unwrap();
 
+    // disable some warnings
+    try!(writeln!(lib_rs, "#![allow(unused_imports)]"));
+    try!(writeln!(lib_rs, ""));
+
     // no_std
     try!(writeln!(lib_rs, "#![no_std]"));
     try!(writeln!(lib_rs, ""));
