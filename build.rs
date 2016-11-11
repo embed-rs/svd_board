@@ -7,7 +7,12 @@ use std::io::{self, Read, Write};
 use inflections::Inflect;
 
 fn main() {
+    use std::process::Command;
+
     codegen(svd_file_name()).expect("codegen failed");
+
+    // try to run rustfmt
+    let _ = Command::new("rustfmt").arg("src/lib.rs").arg("--write-mode").arg("overwrite").status();
 
     println!("cargo:rerun-if-changed=svd/STM32F7x.svd");
 }
