@@ -2,7 +2,7 @@
 authors = ["Philipp Oppermann <dev@phil-opp.com>"]
 build = "build.rs"
 name = "svd_board"
-version = "0.2.0"
+version = "0.2.1"
 
 repository = "https://github.com/embed-rs/svd_board"
 documentation = "https://docs.rs/svd_board"
