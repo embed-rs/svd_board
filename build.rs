@@ -41,7 +41,7 @@ fn svd_file_name() -> &'static str {
 fn codegen(svd_file_name: &str) -> io::Result<()> {
     let xml = &mut String::new();
     File::open(svd_file_name).unwrap().read_to_string(xml).unwrap();
-    let device = svd_parser::parse(xml);
+    let mut device = svd_parser::parse(xml);
 
     let _ = fs::remove_dir_all("src");
     fs::create_dir("src").unwrap();
@@ -64,7 +64,7 @@ fn codegen(svd_file_name: &str) -> io::Result<()> {
 
     let mut modules = Vec::new();
 
-    for peripheral in &device.peripherals {
+    for peripheral in &mut device.peripherals {
         let code = svd_codegen::gen_peripheral(peripheral, &device.defaults)
             .iter()
             .map(|i| i.to_string())
